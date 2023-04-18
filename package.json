@@ -1,0 +1,31 @@
+{
+  "name": "processing-xmltocs",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enzofcna/processing-XMLtoCS.git"
+  },
+  "keywords": [
+    "data-fair-processings-plugin"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enzofcna/processing-XMLtoCS/issues"
+  },
+  "homepage": "https://github.com/enzofcna/processing-XMLtoCS#readme",
+  "devDependencies": {
+    "@data-fair/processings-test-utils": "^0.5.1",
+    "config": "^3.3.9",
+    "mocha": "^10.2.0"
+  }
+}
