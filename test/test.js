@@ -1,4 +1,4 @@
-const config = require('config');
+const config = require('../config/local-dev');
 const testUtils = require('@data-fair/processings-test-utils');
 const {downloadZip,downloadXML} = require('../lib/download.js');
 const process = require('../lib/process.js');
@@ -50,4 +50,21 @@ describe('Process', function () {
   });
   
   
+});
+describe('Load csv test', function () {
+  it('should load a csv on the staging', async function () {
+    this.timeout(100000)
+    const context = testUtils.context({
+      pluginConfig: {
+      },
+      processingConfig: {
+        datasetMode: 'create',
+        dataset :{title : 'XMLtoCSV test'},
+        url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
+        processType : '2020'        
+      },
+      tmpDir: 'data/'
+    }, config, false);
+    await XMLtoCSV.run(context);
+  });
 });
