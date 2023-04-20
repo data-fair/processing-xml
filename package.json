@@ -1,5 +1,5 @@
 {
-  "name": "processing-xmltocs",
+  "name": "processing-xmltocsv",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enzofcna/processing-XMLtoCS.git"
+    "url": "git+https://github.com/enzofcna/processing-XMLtoCSV.git"
   },
   "keywords": [
     "data-fair-processings-plugin"
@@ -20,18 +20,21 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/enzofcna/processing-XMLtoCS/issues"
+    "url": "https://github.com/enzofcna/processing-XMLtoCSV/issues"
   },
-  "homepage": "https://github.com/enzofcna/processing-XMLtoCS#readme",
+  "homepage": "https://github.com/enzofcna/processing-XMLtoCSV#readme",
   "devDependencies": {
     "@data-fair/processings-test-utils": "^0.5.1",
     "config": "^3.3.9",
     "mocha": "^10.2.0"
   },
   "dependencies": {
+    "dot-object": "^2.1.4",
     "fs-extra": "^11.1.1",
+    "json-2-csv": "^4.0.0",
     "path": "^0.12.7",
     "pump": "^3.0.0",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "xml2js": "^0.5.0"
   }
 }
