@@ -2,8 +2,7 @@ const config = require('../config/local-dev');
 const testUtils = require('@data-fair/processings-test-utils');
 const {downloadZip,downloadXML} = require('../lib/download.js');
 const process = require('../lib/process.js');
-const XMLtoCSV = require('../');
-const assert = require('assert').strict
+const xmlProcessing = require('../');
 
 
 describe('Download', function () {
@@ -62,13 +61,13 @@ describe('Load csv test', function () {
       },
       processingConfig: {
         datasetMode: 'create',
-        dataset :{title : 'XMLtoCSV test'},
+        dataset :{title : 'xmlProcessing test'},
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
         separateur : '-'
       },
       tmpDir: 'data/'
     }, config, false);
-    await XMLtoCSV.run(context);
+    await xmlProcessing.run(context);
   })
 });
 
@@ -82,13 +81,13 @@ describe('Another load csv test', function () {
       },
       processingConfig: {
         datasetMode: 'create',
-        dataset :{id : 'xmltocsv-test-update', title : 'XMLtoCSV test update'},
+        dataset :{id : 'xmlprocessing-test-update', title : 'xmlProcessing test update'},
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
         separateur : '-'
       },
       tmpDir: 'data/'
     }, config, false);
-    await XMLtoCSV.run(context);
+    await xmlProcessing.run(context);
   })
 });
 
@@ -100,14 +99,14 @@ describe('Update dataset', function () {
       },
       processingConfig: {
         datasetMode: 'update',
-        dataset :{id : 'xmltocsv-test-update', title : 'XMLtoCSV test update'},
+        dataset :{id : 'xmlprocessing-test-update', title : 'xmlProcessing test update'},
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2023',
         separateur : '-'   
       },
       tmpDir: 'data/'
     }, config, false);
     await wait(15000);
-    await XMLtoCSV.run(context);
+    await xmlProcessing.run(context);
   });
 });
 

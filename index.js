@@ -39,7 +39,7 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
             await log.info(`le jeu de donnée existe, id="${dataset.id}", title="${dataset.title}"`)
             dataset = (await axios({
                 headers: { ...formData.getHeaders(), 'content-length': await formData.getLength() },
-                method: 'put',
+                method: 'post',
                 url: 'api/v1/datasets/' + processingConfig.dataset.id,
                 data: formData,
                 maxContentLength: Infinity,

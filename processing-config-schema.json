@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "x-display": "tabs",
+    "required": ["datasetMode"],
+    "allOf": [{
+      "title": "Jeu de données",
+      "oneOf": [{
+        "title": "Créer un jeu de données",
+        "required": ["dataset"],
+        "properties": {
+          "datasetMode": { "type": "string", "const": "create", "title": "Action" },
+          "dataset": {
+            "type": "object",
+            "properties": {
+              "title": {"type": "string", "title": "Titre (laissez vide pour utiliser le nom de fichier téléchargé)"}
+            }
+          },
+          "url":{
+            "type": "string",
+            "title": "l'Url d'accès aux données sources (source xml)"
+          },
+          "separateur":{
+            "type": "string",
+            "title": "Le séparateur de colonne"
+          }
+        }
+      }, {
+        "title": "Mettre à jour un jeu de données (fichier)",
+        "required": ["dataset"],
+        "properties": {
+          "datasetMode": { "type": "string", "const": "update" },
+          "dataset": {
+            "type": "object",
+            "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&{context.ownerFilter}",
+            "x-itemsProp": "results",
+            "x-itemTitle": "title",
+            "x-itemKey": "id",
+            "properties": {
+              "id": {"type": "string", "title": "Identifiant"},
+              "title": {"type": "string", "title": "Titre"}
+            }
+          }
+        }
+      }, {
+        "title": "Mettre à jour des lignes d'un jeu de données (incrémental)",
+        "required": ["dataset"],
+        "properties": {
+          "datasetMode": { "type": "string", "const": "lines" },
+          "dataset": {
+            "type": "object",
+            "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&rest=true&{context.ownerFilter}",
+            "x-itemsProp": "results",
+            "x-itemTitle": "title",
+            "x-itemKey": "id",
+            "properties": {
+              "id": {"type": "string", "title": "Identifiant"},
+              "title": {"type": "string", "title": "Titre"}
+            }
+          }
+        }
+      }]
+    }
+    ]
+  }
