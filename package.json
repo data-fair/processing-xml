@@ -8,7 +8,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha ./test/test.js"
+    "test": "mocha ./test/test.js",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint-fix": "eslint --ignore-path .gitignore --fix ."
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,9 @@
   "devDependencies": {
     "@data-fair/processings-test-utils": "^0.5.1",
     "config": "^3.3.9",
-    "mocha": "^10.2.0"
+    "eslint": "^7.18.0",
+    "mocha": "^10.2.0",
+    "standard": "^16.0.3"
   },
   "dependencies": {
     "dot-object": "^2.1.4",
