@@ -2,11 +2,11 @@ const fs = require('fs-extra')
 const path = require('path')
 const util = require('util')
 const FormData = require('form-data')
-const { downloadXML } = require('./lib/download.js')
+const { download } = require('./lib/download.js')
 const process = require('./lib/process.js')
 
 exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir, axios, log, patchConfig, ws }) => {
-  await downloadXML(processingConfig, tmpDir, axios, log)
+  await download(processingConfig, tmpDir, axios, log)
   await process(processingConfig, tmpDir, axios, log)
 
   const formData = new FormData()

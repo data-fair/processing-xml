@@ -1,6 +1,6 @@
 const config = require('../config/local-dev')
 const testUtils = require('@data-fair/processings-test-utils')
-const { downloadZip, downloadXML } = require('../lib/download.js')
+const { download } = require('../lib/download.js')
 const process = require('../lib/process.js')
 const xmlProcessing = require('../')
 
@@ -15,7 +15,7 @@ describe('Download', function () {
       },
       tmpDir: 'data/'
     }, config, false)
-    await downloadZip(context.processingConfig, context.tmpDir, context.axios, context.log)
+    await download(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
   it('should download an XML file', async function () {
     this.timeout(10000)
@@ -28,16 +28,13 @@ describe('Download', function () {
       },
       tmpDir: 'data/'
     }, config, false)
-    await downloadXML(context.processingConfig, context.tmpDir, context.axios, context.log)
+    await download(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
 })
 
 describe('Process', function () {
   it('should create a csv from an xml file', async function () {
     const context = testUtils.context({
-      pluginConfig: {
-
-      },
       processingConfig: {
         datasetMode: 'create',
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
@@ -45,7 +42,7 @@ describe('Process', function () {
       },
       tmpDir: 'data/'
     }, config, false)
-    await process(context.pluginConfig, context.processingConfig, context.tmpDir, context.axios, context.log)
+    await process(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
 })
 

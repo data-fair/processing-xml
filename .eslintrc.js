@@ -10,5 +10,8 @@ module.exports = {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     camelcase: 0
+  },
+  env: {
+    mocha: true
   }
 }
