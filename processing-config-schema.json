@@ -14,14 +14,6 @@
             "properties": {
               "title": {"type": "string", "title": "Titre (laissez vide pour utiliser le nom de fichier téléchargé)"}
             }
-          },
-          "url":{
-            "type": "string",
-            "title": "l'Url d'accès aux données sources (source xml)"
-          },
-          "separateur":{
-            "type": "string",
-            "title": "Le séparateur de colonne"
           }
         }
       }, {
@@ -40,6 +32,7 @@
               "title": {"type": "string", "title": "Titre"}
             }
           }
+          
         }
       }, {
         "title": "Mettre à jour des lignes d'un jeu de données (incrémental)",
@@ -59,6 +52,18 @@
           }
         }
       }]
+    }, {
+      "title": "Paramètres",
+      "properties": {
+          "url":{
+            "type": "string",
+            "title": "l'Url d'accès aux données sources (source xml)"
+          },
+          "separateur":{
+            "type": "string",
+            "title": "Le séparateur de colonne"
+          }
+      }
     }
     ]
   }
