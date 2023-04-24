@@ -1,6 +1,6 @@
 {
   "name": "@data-fair/processing-xml",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Integrate XML documents by flattening them",
   "main": "index.js",
   "directories": {
