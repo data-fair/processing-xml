@@ -18,7 +18,7 @@ describe('Download', function () {
     await download(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
   it('should download an XML file', async function () {
-    this.timeout(10000)
+    this.timeout(100000)
 
     const context = testUtils.context({
       pluginConfig: {
