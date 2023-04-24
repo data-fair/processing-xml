@@ -49,13 +49,13 @@ describe('Process', function () {
 
 describe('Load csv test', function () {
   it('should load a csv on the staging', async function () {
-    this.timeout(20000)
+    this.timeout(100000)
     const context = testUtils.context({
       pluginConfig: {
       },
       processingConfig: {
         datasetMode: 'create',
-        dataset: { title: 'xmlProcessing test' },
+        dataset: { title: 'xmlProcessing' },
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
         separateur: '-'
       },
