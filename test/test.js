@@ -1,7 +1,8 @@
+process.env.NODE_ENV = 'test'
 const config = require('config')
 const testUtils = require('@data-fair/processings-test-utils')
 const { download } = require('../lib/download.js')
-const process = require('../lib/process.js')
+const processXML = require('../lib/process.js')
 const xmlProcessing = require('../')
 
 describe('Download', function () {
@@ -42,7 +43,7 @@ describe('Process', function () {
       },
       tmpDir: 'data/'
     }, config, false)
-    await process(context.processingConfig, context.tmpDir, context.axios, context.log)
+    await processXML(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
 })
 
