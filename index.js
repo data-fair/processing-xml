@@ -31,7 +31,7 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
         maxBodyLength: Infinity
 
       })).data
-      await log.info(`jeu de donnée créé, id="${dataset.id}", title="${dataset.title}"`)
+      await log.info(`Jeu de données créé, id="${dataset.id}", title="${dataset.title}"`)
     } catch (err) {
       await log.error('Post ERROR')
       await log.error(JSON.stringify(err, null, 2))
@@ -43,7 +43,7 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
     await log.step('Vérification du jeu de données')
     dataset = (await axios.get('api/v1/datasets/' + processingConfig.dataset.id)).data
     if (!dataset) throw new Error(`Le jeu de données n'existe pas, id="${processingConfig.dataset.id}"`)
-    await log.info(`le jeu de donnée existe, id="${dataset.id}", title="${dataset.title}"`)
+    await log.info(`Le jeu de données existe, id="${dataset.id}", title="${dataset.title}"`)
     dataset = (await axios({
       headers: { ...formData.getHeaders(), 'content-length': await formData.getLength() },
       method: 'post',
@@ -53,6 +53,6 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
       maxBodyLength: Infinity
 
     })).data
-    await log.info(`jeu de donnée mis à jour, id="${dataset.id}", title="${dataset.title}"`)
+    await log.info(`Jeu de données mis à jour, id="${dataset.id}", title="${dataset.title}"`)
   }
 }
