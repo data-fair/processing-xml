@@ -1,4 +1,4 @@
-const config = require('../config/local-dev')
+const config = require('config')
 const testUtils = require('@data-fair/processings-test-utils')
 const { download } = require('../lib/download.js')
 const process = require('../lib/process.js')
