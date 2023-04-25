@@ -103,3 +103,21 @@ describe('Update dataset', function () {
     await xmlProcessing.run(context)
   })
 })
+
+describe('incremental modification test', function () {
+  it('should add or modify dataset information', async function () {
+    this.timeout(20000)
+    const context = testUtils.context({
+      pluginConfig: {
+      },
+      processingConfig: {
+        datasetMode: 'lines',
+        dataset: { id: 'xml-editable', title: 'XML editable' },
+        url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2019',
+        separateur: '-'
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await xmlProcessing.run(context)
+  })
+})
