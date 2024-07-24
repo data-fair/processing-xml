@@ -31,6 +31,19 @@ describe('Download', function () {
     }, config, false)
     await download(context.processingConfig, context.tmpDir, context.axios, context.log)
   })
+  it('should download an XML file', async function () {
+    this.timeout(100000)
+
+    const context = testUtils.context({
+      pluginConfig: {
+      },
+      processingConfig: {
+        url: 'https://nantesleconcorde.cineoffice.fr/TMSexport/nantesleconcorde/'
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await download(context.processingConfig, context.tmpDir, context.axios, context.log)
+  })
 })
 
 describe('Process', function () {
@@ -40,6 +53,17 @@ describe('Process', function () {
         datasetMode: 'create',
         url: 'https://data-api.megalis.bretagne.bzh/api/v1/decp/222200016/2020',
         separateur: '-'
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await processXML(context.processingConfig, context.tmpDir, context.axios, context.log)
+  })
+
+  it('should create a csv from an xml file', async function () {
+    const context = testUtils.context({
+      processingConfig: {
+        datasetMode: 'create',
+        url: 'https://nantesleconcorde.cineoffice.fr/TMSexport/nantesleconcorde/'
       },
       tmpDir: 'data/'
     }, config, false)
