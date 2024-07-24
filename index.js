@@ -10,12 +10,12 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
   const tab = await process(processingConfig, tmpDir, axios, log)
   if (processingConfig.datasetMode === 'create' || processingConfig.datasetMode === 'update') {
     await log.step('Chargement du jeu de données')
-    const formData = new FormData()
-    formData.append('title', processingConfig.dataset.title)
-    formData.append('extras', JSON.stringify({ processingId }))
     const fileName = path.parse(new URL(processingConfig.url).pathname).name + '.csv'
     const check = fs.existsSync(path.join(tmpDir, fileName))
     if (!check) throw new Error(`Le fichier n'existe pas, path="${path.join(tmpDir, fileName)}"`)
+    const formData = new FormData()
+    formData.append('title', processingConfig.dataset.title || path.parse(new URL(processingConfig.url).pathname).name)
+    formData.append('extras', JSON.stringify({ processingId }))
     formData.append('file', await fs.createReadStream(path.join(tmpDir, fileName)), { fileName })
     formData.getLength = util.promisify(formData.getLength)
     let dataset
