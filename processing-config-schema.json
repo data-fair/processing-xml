@@ -1,69 +1,79 @@
 {
-    "type": "object",
-    "x-display": "tabs",
-    "required": ["datasetMode"],
-    "allOf": [{
-      "title": "Jeu de données",
-      "oneOf": [{
-        "title": "Créer un jeu de données",
-        "required": ["dataset"],
-        "properties": {
-          "datasetMode": { "type": "string", "const": "create", "title": "Action" },
-          "dataset": {
-            "type": "object",
-            "properties": {
-              "title": {"type": "string", "title": "Titre (laissez vide pour utiliser le nom de fichier téléchargé)"}
-            }
-          }
-        }
-      }, {
-        "title": "Mettre à jour un jeu de données (fichier)",
-        "required": ["dataset"],
-        "properties": {
-          "datasetMode": { "type": "string", "const": "update" },
-          "dataset": {
-            "type": "object",
-            "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&{context.ownerFilter}",
-            "x-itemsProp": "results",
-            "x-itemTitle": "title",
-            "x-itemKey": "id",
-            "properties": {
-              "id": {"type": "string", "title": "Identifiant"},
-              "title": {"type": "string", "title": "Titre"}
-            }
-          }
-          
-        }
-      }, {
-        "title": "Mettre à jour des lignes d'un jeu de données (incrémental)",
-        "required": ["dataset"],
-        "properties": {
-          "datasetMode": { "type": "string", "const": "lines" },
-          "dataset": {
-            "type": "object",
-            "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&rest=true&{context.ownerFilter}",
-            "x-itemsProp": "results",
-            "x-itemTitle": "title",
-            "x-itemKey": "id",
-            "properties": {
-              "id": {"type": "string", "title": "Identifiant"},
-              "title": {"type": "string", "title": "Titre"}
-            }
-          }
-        }
-      }]
-    }, {
-      "title": "Paramètres",
+  "type": "object",
+  "x-display": "tabs",
+  "required": ["datasetMode"],
+  "allOf": [{
+    "title": "Jeu de données",
+    "oneOf": [{
+      "title": "Créer un jeu de données",
+      "required": ["dataset"],
       "properties": {
-          "url":{
-            "type": "string",
-            "title": "l'Url d'accès aux données sources (source xml)"
-          },
-          "separateur":{
-            "type": "string",
-            "title": "Le séparateur de colonne"
+        "datasetMode": { "type": "string", "const": "create", "title": "Action" },
+        "dataset": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string", "title": "Titre (laissez vide pour utiliser le nom de fichier téléchargé)"}
           }
+        }
+      }
+    }, {
+      "title": "Mettre à jour un jeu de données (fichier)",
+      "required": ["dataset"],
+      "properties": {
+        "datasetMode": { "type": "string", "const": "update" },
+        "dataset": {
+          "type": "object",
+          "title": "Jeu de données",
+          "properties": {
+            "id": {"type": "string", "title": "Identifiant"},
+            "title": {"type": "string", "title": "Titre"}
+          },
+          "layout": {
+            "getItems": {
+              "url": "${context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&${context.ownerFilter}&size=100",
+              "itemsResults": "data.results",
+              "itemTitle": "item.title",
+              "itemKey": "item.id"
+            }
+          }
+        }
+      }
+    }, {
+      "title": "Mettre à jour des lignes d'un jeu de données (incrémental)",
+      "required": ["dataset"],
+      "properties": {
+        "datasetMode": { "type": "string", "const": "lines" },
+        "dataset": {
+          "type": "object",
+          "title": "Jeu de données",
+          "properties": {
+            "id": {"type": "string", "title": "Identifiant"},
+            "title": {"type": "string", "title": "Titre"}
+          },
+          "layout": {
+            "getItems": {
+              "url": "${context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&rest=true&${context.ownerFilter}&size=100",
+              "itemsResults": "data.results",
+              "itemTitle": "item.title",
+              "itemKey": "item.id"
+            }
+          }
+        }
+      }
+    }]
+  }, {
+    "title": "Paramètres",
+    "required": ["url", "separateur"],
+    "properties": {
+      "url": {
+        "type": "string",
+        "title": "URL du fichier XML"
+      },
+      "separateur": {
+        "type": "string",
+        "title": "Séparateur des balises imbriquées",
+        "default": "/"
       }
     }
-    ]
-  }
+  }]
+}
